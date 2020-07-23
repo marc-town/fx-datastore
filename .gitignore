@@ -1,0 +1,6 @@
+rdb/mysql-data
+rdb/log
+web-api/.vscode/
+web-api/__debug_bin
+logs
+go.sum

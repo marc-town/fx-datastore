@@ -1,0 +1,44 @@
+version: '3.5'
+services:
+  web-api:
+    build:
+      context: web-api
+    container_name: api-server
+    ports:
+      - "1323:1323"
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./web-api:/go/src/github.com/marc-town/fx-datastore/web-api
+    command: realize start --run --no-config
+
+  # web-gui:
+  #   build:
+  #     context: web-gui
+  #   container_name: web-server
+  #   links:
+  #     - web-api
+  #   ports:
+  #     - "80:80"
+  #   environment:
+  #     TZ: "Asia/Tokyo"
+  #   volumes:
+  #     - ./logs/front-end:/var/log/nginx
+
+  rdb:
+    build: rdb
+    container_name: api-db
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./rdb/mysql-data:/var/lib/mysql
+      - ./rdb/initdb.d:/docker-entrypoint-initdb.d
+      - ./rdb/conf.d:/etc/mysql/conf.d
+      - ./rdb/log:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blog_app_db
+      MYSQL_USER: apluser
+      MYSQL_PASSWORD: apluser
+      TZ: 'Asia/Tokyo'
+    ports:
+        - "3306:3306"
