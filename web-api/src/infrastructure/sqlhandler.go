@@ -29,7 +29,7 @@ func GetDBConfig() (string, string) {
 	USER := "root"
 	PASS := "root"
 	PROTOCOL := "tcp(rdb)"
-	DBNAME := "blog_app_db"
+	DBNAME := "fx_datastore"
 	OPTION := "charset=utf8&parseTime=True&loc=Local"
 
 	connectTemplate := "%s:%s@%s/%s?%s"
