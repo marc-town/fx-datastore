@@ -23,6 +23,7 @@ create table IF not exists `transactions`
 (
   `id` int not null auto_increment comment '取引ID',
   `currency_pair` char(7) not null comment '通貨ペア',
+  `direction` varchar(5) not null comment '買いor売り',
   `entry_point` decimal(9, 5) not null comment 'エントリー価格',
   `entry_time` char(19) not null comment 'エントリー時間',
   `exit_point` decimal(9, 5) not null comment 'クローズ価格',
