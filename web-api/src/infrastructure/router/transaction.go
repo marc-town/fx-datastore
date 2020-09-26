@@ -10,11 +10,10 @@ import (
 )
 
 func TransactionRouter(g *echo.Group) {
-	log.Print("Transaction roter")
+	log.Print("Transaction router")
 
 	// Controllers
 	transactionController := controllers.NewTransactionController(infrastructure.NewSqlHandler())
-	// historyController := controllers.HistoryController(NewSqlHandler())
 
 	g.GET("/transactions", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "transactions")

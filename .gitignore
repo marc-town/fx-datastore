@@ -1,6 +1,11 @@
+# vscode
+.vscode
+
+# local database datas
 rdb/mysql-data
+
+# logs
 rdb/log
-web-api/.vscode/
-web-api/__debug_bin
-logs
-go.sum
+
+# develop tools
+fx_datastore.http
