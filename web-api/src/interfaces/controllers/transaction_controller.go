@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"strconv"
 
 	"github.com/labstack/echo"
@@ -49,10 +50,11 @@ func (controller *TransactionController) Create(c echo.Context) (err error) {
 	c.Bind(&a)
 	transaction, err := controller.Interactor.Add(a)
 	if err != nil {
-		c.JSON(500, NewError(err))
+		log.Print(err)
+		c.JSON(500, SetErrorResponse("error_code"))
 		return
 	}
-	c.JSON(201, SetResponse(transaction))
+	c.NoContent(201)
 	return
 }
 
