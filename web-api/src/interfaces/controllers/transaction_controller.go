@@ -41,15 +41,14 @@ func (controller *TransactionController) Index(c echo.Context) (err error) {
 		c.JSON(500, NewError(err))
 		return
 	}
-	c.JSON(200, SetResponse(transactions))
+	c.JSON(200, transactions)
 	return
 }
 
 func (controller *TransactionController) Create(c echo.Context) (err error) {
 	a := model.Transaction{}
 	c.Bind(&a)
-	transaction, err := controller.Interactor.Add(a)
-	if err != nil {
+	if err = controller.Interactor.Add(a); err != nil {
 		log.Print(err)
 		c.JSON(500, SetErrorResponse("error_code"))
 		return

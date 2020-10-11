@@ -20,11 +20,10 @@ func (repo *TransactionRepository) FindAll() (transactions model.Transactions, e
 	return
 }
 
-func (repo *TransactionRepository) Store(a model.Transaction) (transaction model.Transaction, err error) {
+func (repo *TransactionRepository) Store(a model.Transaction) (err error) {
 	if err = repo.Create(&a).Error; err != nil {
 		return
 	}
-	transaction = a
 	return
 }
 

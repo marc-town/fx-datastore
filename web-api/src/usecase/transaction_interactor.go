@@ -19,8 +19,8 @@ func (interactor *TransactionInteractor) Transactions() (projects model.Transact
 	return
 }
 
-func (interactor *TransactionInteractor) Add(a model.Transaction) (project model.Transaction, err error) {
-	project, err = interactor.TransactionRepository.Store(a)
+func (interactor *TransactionInteractor) Add(a model.Transaction) (err error) {
+	err = interactor.TransactionRepository.Store(a)
 	return
 }
 
