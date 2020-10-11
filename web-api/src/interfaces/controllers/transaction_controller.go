@@ -31,7 +31,7 @@ func (controller *TransactionController) Show(c echo.Context) (err error) {
 		c.JSON(500, NewError(err))
 		return
 	}
-	c.JSON(200, SetResponse(transaction))
+	c.JSON(200, transaction)
 	return
 }
 
