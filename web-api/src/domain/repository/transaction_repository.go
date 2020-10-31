@@ -6,6 +6,6 @@ type TransactionRepository interface {
 	FindById(id int) (model.Transaction, error)
 	FindAll() (model.Transactions, error)
 	Store(model.Transaction) error
-	Update(model.Transaction) (model.Transaction, error)
+	Update(model.Transaction) error
 	DeleteById(model.Transaction) error
 }

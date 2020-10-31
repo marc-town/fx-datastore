@@ -46,9 +46,9 @@ func (controller *TransactionController) Index(c echo.Context) (err error) {
 }
 
 func (controller *TransactionController) Create(c echo.Context) (err error) {
-	a := model.Transaction{}
-	c.Bind(&a)
-	if err = controller.Interactor.Add(a); err != nil {
+	transaction := model.Transaction{}
+	c.Bind(&transaction)
+	if err = controller.Interactor.Add(transaction); err != nil {
 		log.Print(err)
 		c.JSON(500, SetErrorResponse("error_code"))
 		return
@@ -59,15 +59,15 @@ func (controller *TransactionController) Create(c echo.Context) (err error) {
 
 func (controller *TransactionController) Save(c echo.Context) (err error) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	a := model.Transaction{}
-	c.Bind(&a)
-	a.ID = id
-	transaction, err := controller.Interactor.Update(a)
-	if err != nil {
+	transaction := model.Transaction{
+		ID: id,
+	}
+	c.Bind(&transaction)
+	if err = controller.Interactor.Update(transaction); err != nil {
 		c.JSON(500, NewError(err))
 		return
 	}
-	c.JSON(201, SetResponse(transaction))
+	c.NoContent(201)
 	return
 }
 
@@ -81,6 +81,6 @@ func (controller *TransactionController) Delete(c echo.Context) (err error) {
 		c.JSON(500, NewError(err))
 		return
 	}
-	c.JSON(200, SetResponse(transaction))
+	c.NoContent(200)
 	return
 }

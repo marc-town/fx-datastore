@@ -27,11 +27,10 @@ func (repo *TransactionRepository) Store(a model.Transaction) (err error) {
 	return
 }
 
-func (repo *TransactionRepository) Update(a model.Transaction) (transaction model.Transaction, err error) {
+func (repo *TransactionRepository) Update(a model.Transaction) (err error) {
 	if err = repo.Save(&a).Error; err != nil {
 		return
 	}
-	transaction = a
 	return
 }
 
